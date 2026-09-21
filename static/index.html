@@ -15,13 +15,33 @@
         background: #f3f3f3;
         color: #333;
       }
-      #typed {
-        width: 100%;
-        box-sizing: border-box;
-        margin-top: 1.5rem;
-        padding: 0.5rem;
-        font: inherit;
+      #words {
+        min-height: 5.1em; /* 3 * line-height */
+        user-select: none;
       }
+      #words .word {
+        display: inline-block;
+      }
+
+      #words .untyped {
+        color: #999;
+      }
+      #words .correct {
+        color: #256029;
+      }
+      #words .incorrect {
+        color: #b3261e;
+        text-decoration: underline;
+      }
+      #words .extra {
+        color: #8a5a00;
+        text-decoration: underline dotted;
+      }
+      #words .current {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 3px;
+      }
+
       #status {
         font-size: 0.85rem;
         color: #666;
@@ -30,13 +50,6 @@
   </head>
   <body>
     <div id="words">loading...</div>
-
-    <input
-      id="typed"
-      autocomplete="off"
-      autocapitalize="off"
-      spellcheck="false"
-    />
 
     <p id="status"></p>
 
