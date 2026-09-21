@@ -38,8 +38,8 @@ async function finish() {
             mode_value: WORD_COUNT,
             list: LIST,
         });
-        statusEl.textcontent = `saved #${row.id} - ${row.wpm.toFixed(1)} wpm - ${row.acc.toFixed(0)}% acc`;
-        alert(`wpm: ${row.wpm.toFixed(1)}`); // PLACEHOLDER 
+        statusEl.textContent = `saved #${row.id} - ${row.wpm.toFixed(1)} wpm - ${row.acc.toFixed(0)}% acc`; // CHANGED - capital C
+        alert(`wpm: ${row.wpm.toFixed(1)}`); // PLACEHOLDER
     } catch (err) {
         statusEl.textContent = String(err);
     }
@@ -53,5 +53,5 @@ inputEl.addEventListener("input", () => {
 document.body.addEventListener("click", () => inputEl.focus());
 
 start().catch((err) => {
-    statusEl.textContent = STring(err);
+    statusEl.textContent = String(err);
 });

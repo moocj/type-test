@@ -27,7 +27,7 @@ def load_list(name: str) -> list[str]:
     if name not in _lists:
         path = DATA_DIR / f"{name}.json"
         if not path.is_file():
-            raise UnknownListError
+            raise UnknownListError(name)
         _lists[name] = json.loads(path.read_text(encoding="utf-8"))
     return _lists[name]
 
@@ -41,7 +41,7 @@ def generate(
     out: list[str] = []
     for _ in range(count):
         word = rng.choice(words)
-        # No repeats within 10 words
+        # No repeated words back to back
         for _retry in range(10):
             if not out or word != out[-1]:
                 break
