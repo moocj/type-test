@@ -7,7 +7,7 @@ from typing import Annotated, Literal
 
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel, ConfigDict, Field
-from sqlmodel import Session, select
+from sqlmodel import Session, col, select
 
 from app.db import get_session
 from app.models import Result
@@ -65,6 +65,8 @@ def list_results(
     limit: Annotated[int, Query(ge=1, le=100)] = 20,
 ) -> list[Result]:
     statement = (
-        select(Result).order_by(Result.created_at.desc(), Result.id.desc()).limit(limit)
+        select(Result)
+        .order_by(col(Result.created_at).desc(), col(Result.id).desc())
+        .limit(limit)
     )
     return list(session.exec(statement).all())

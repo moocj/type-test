@@ -13,7 +13,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="type-test", version="0.1.0")
+app = FastAPI(title="type-test", version="0.1.0", lifespan=lifespan)
 
 
 @app.get("/health")
@@ -25,4 +25,4 @@ def health() -> dict[str, str]:
 app.include_router(words.router)
 app.include_router(results.router)
 
-app.mount("/", StaticFiles(directory="static"), name="static")
+app.mount("/", StaticFiles(directory="static", html=True), name="static")

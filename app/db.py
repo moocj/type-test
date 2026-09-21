@@ -6,7 +6,7 @@ from collections.abc import Generator
 
 from sqlmodel import Session, SQLModel, create_engine
 
-from app.models import Result
+from app.models import Result  # noqa: F401
 
 SQLITE_FILE = "type-test.db"
 
