@@ -13,7 +13,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="type-test", version="0.1.0")
+app = FastAPI(title="type-test", version="0.1.0", lifespan=lifespan)
 
 
 @app.get("/health")
