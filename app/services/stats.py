@@ -67,6 +67,10 @@ def _score(target: str, typed: str) -> tuple[int, int, int, int]:
             if i < len(target_words) - 1:
                 correct_chars += 1
 
+    for extra_word in typed_words[len(target_words) :]:
+        keypresses += len(extra_word)
+        errors += len(extra_word)
+
     return keypresses, correct_keypresses, correct_chars, errors
 
 

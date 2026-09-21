@@ -93,3 +93,8 @@ def test_compute_returns_exact_keys():
         "errors",
         "duration",
     }
+
+
+def test_extra_words_still_count_as_raw():
+    typed = "the quick brown"
+    assert compute("the quick", typed, duration=60)["raw"] == raw(typed, 60)
