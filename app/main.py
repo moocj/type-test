@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
+from app.routers import words
+
 app = FastAPI(title="type-test", version="0.1.0")
 
 
@@ -10,4 +12,6 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+app.include_router(words.router)
+
+app.mount("/", StaticFiles(directory="static"), name="static")
