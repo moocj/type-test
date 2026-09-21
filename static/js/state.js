@@ -44,15 +44,21 @@ export function pushChar(ch) {
    const typed = state.typed[state.wordIndex];
    if (typed.length >= word.length + EXTRA_CAP) return false; 
    touchClock();
+   const correct = typed.length < word.length && ch === word[typed.length];
    state.typed[state.wordIndex] = typed + ch; 
-   return typed.length < word.length && ch === word[typed.length]; 
+
+   // when in words mode it should end on last ch 
+   if(state.wordIndex === state.words.length - 1 && typed.length + 1 === word.length){
+    state.finished = true;
+   }
+   return correct; 
 }
 
 export function popChar() {
     const typed = state.typed[state.wordIndex];
     if(!typed.length) return; 
     touchClock(); 
-    state.typed[state.wordIndex] = typed.splice(0, -1);
+    state.typed[state.wordIndex] = typed.slice(0, -1);
 }
 
 // user pressing space
@@ -60,7 +66,7 @@ export function commitWord() {
     const typed = state.typed[state.wordIndex];
     if (!typed.length) return; 
     touchClock();
-    if(state.wordindex < state.words.length -1 ) {
+    if(state.wordIndex < state.words.length -1 ) {
         state.wordIndex += 1
     } else {
         state.finished = true;
