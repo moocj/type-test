@@ -25,4 +25,4 @@ def health() -> dict[str, str]:
 app.include_router(words.router)
 app.include_router(results.router)
 
-app.mount("/", StaticFiles(directory="static"), name="static")
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
